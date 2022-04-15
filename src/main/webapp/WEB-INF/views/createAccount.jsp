@@ -28,7 +28,6 @@
                         <c:if test="${!empty errorPassword}">
                            <p class="error">${errorPassword}</p>
                         </c:if>
-                        
                         <input type="submit" class="button primary" value="作成する">
                     </form>
                 </div>
