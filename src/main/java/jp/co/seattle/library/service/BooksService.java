@@ -33,7 +33,7 @@ public class BooksService {
 
         // TODO 取得したい情報を取得するようにSQLを修正
         List<BookInfo> getedBookList = jdbcTemplate.query(
-                "select * from books",
+                "select * from books order by title asc",
                 new BookInfoRowMapper());
 
         return getedBookList;
@@ -49,7 +49,7 @@ public class BooksService {
 
         // JSPに渡すデータを設定する
         String sql = "SELECT * FROM books where id ="
-                + bookId;
+                + bookId ;
 
         BookDetailsInfo bookDetailsInfo = jdbcTemplate.queryForObject(sql, new BookDetailsInfoRowMapper());
 
