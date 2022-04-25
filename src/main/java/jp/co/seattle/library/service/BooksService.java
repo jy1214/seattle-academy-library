@@ -89,7 +89,7 @@ public class BooksService {
 	public int newBook() {
 
 		// JSPに渡すデータを設定する
-		String sql = "SELECT id FROM books order by reg_date desc limit 1";
+		String sql = "SELECT id FROM books order by id desc limit 1";
 
 		int bookId = jdbcTemplate.queryForObject(sql, Integer.class);
 
