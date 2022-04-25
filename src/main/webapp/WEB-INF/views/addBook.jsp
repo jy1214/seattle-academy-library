@@ -41,6 +41,9 @@
                 </div>
                 <div class="content_right">
                     <div>
+                        <c:if test="${!empty errorText}">
+                            <div class="error">${errorText}</div>
+                        </c:if>
                         <span>書籍名</span><span class="care care2">必須</span>
                         <c:if test="${!empty bookInfo}">
                             <input type="text" name="title" value="${bookInfo.title}">
@@ -67,6 +70,33 @@
                             <input type="text" name="publisher">
                         </c:if>
                     </div>
+                    <div>
+                        <span>出版日</span><span class="care care2">必須</span>
+                        <c:if test="${!empty bookInfo}">
+                            <input type="text" name="publish_date" value="${bookInfo.publishDate}" placeholder="YYYYMMDD">
+                        </c:if>
+                        <c:if test="${empty bookInfo}">
+                            <input type="text" name="publish_date" autocomplete="off" placeholder="YYYYMMDD">
+                        </c:if>
+                    </div>
+                    <div>
+                        <span>ISBN</span><span class="care care1">任意</span>
+                        <c:if test="${!empty bookInfo}">
+                            <input type="text" name="ISBN" value="${bookInfo.ISBN}">
+                        </c:if>
+                        <c:if test="${empty bookInfo}">
+                            <input type="text" name="ISBN" autocomplete="on">
+                        </c:if>
+                    </div>
+                    <div>
+                        <span>説明文</span><span class="care care1">任意</span>
+                        <c:if test="${!empty bookInfo}">
+                            <input type="text" name="introduce" value="${bookInfo.introduce}">
+                        </c:if>
+                        <c:if test="${empty bookInfo}">
+                            <input type="text" name="introduce">
+                        </c:if>
+                    </div>
                     <input type="hidden" id="bookId" name="bookId" value="${bookInfo.bookId}">
                 </div>
             </div>
@@ -74,7 +104,6 @@
                 <button type="submit" id="add-btn" class="btn_addBook">登録</button>
             </div>
         </form>
-        </div>
     </main>
 </body>
 </html>
