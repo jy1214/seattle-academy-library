@@ -87,8 +87,22 @@ public class AddBooksController {
 		}
 
 		if (title.length() == 0 || author.length() == 0 || publisher.length() == 0) {
-			model.addAttribute("errorText", "必須項目を入力してください");
-			return "addBook";
+			if (ISBN.length() == 0 || ISBN.length() == 10 || ISBN.length() == 13 && ISBN.matches("^[0-9]+$")) {
+				if (publishDate.matches("^[0-9]{8}+$")) {
+					model.addAttribute("errorText", "必須項目を入力してください");
+					return "addBook";
+				} else {
+					model.addAttribute("errorText", "必須項目を入力してください<br>出版日は半角数字のYYYYMMDD形式で入力してください");
+					return "addBook";
+				}
+			} else if (publishDate.matches("^[0-9]{8}+$")) {
+				model.addAttribute("errorText", "必須項目を入力してください<br>ISBNの桁数または半角数字が正しくありません");
+				return "addBook";
+			} else {
+				model.addAttribute("errorText",
+						"必須項目を入力してください<br>出版日は半角数字のYYYYMMDD形式で入力してください<br>ISBNの桁数または半角数字が正しくありません");
+				return "addBook";
+			}
 		} else if (ISBN.length() == 0 || ISBN.length() == 10 || ISBN.length() == 13 && ISBN.matches("^[0-9]+$")) {
 			if (publishDate.matches("^[0-9]{8}+$")) {
 				// 書籍情報を新規登録する
