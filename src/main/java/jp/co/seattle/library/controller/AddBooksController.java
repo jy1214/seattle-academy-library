@@ -90,17 +90,20 @@ public class AddBooksController {
 			if (ISBN.length() == 0 || ISBN.length() == 10 || ISBN.length() == 13 && ISBN.matches("^[0-9]+$")) {
 				if (publishDate.matches("^[0-9]{8}+$")) {
 					model.addAttribute("errorText", "必須項目を入力してください");
+					model.addAttribute("bookInfo", bookInfo);
 					return "addBook";
 				} else {
 					model.addAttribute("errorText", "必須項目を入力してください<br>出版日は半角数字のYYYYMMDD形式で入力してください");
+					model.addAttribute("bookInfo", bookInfo);
 					return "addBook";
 				}
 			} else if (publishDate.matches("^[0-9]{8}+$")) {
 				model.addAttribute("errorText", "必須項目を入力してください<br>ISBNの桁数または半角数字が正しくありません");
+				model.addAttribute("bookInfo", bookInfo);
 				return "addBook";
 			} else {
-				model.addAttribute("errorText",
-						"必須項目を入力してください<br>出版日は半角数字のYYYYMMDD形式で入力してください<br>ISBNの桁数または半角数字が正しくありません");
+				model.addAttribute("errorText", "必須項目を入力してください<br>出版日は半角数字のYYYYMMDD形式で入力してください<br>ISBNの桁数または半角数字が正しくありません");
+				model.addAttribute("bookInfo", bookInfo);
 				return "addBook";
 			}
 		} else if (ISBN.length() == 0 || ISBN.length() == 10 || ISBN.length() == 13 && ISBN.matches("^[0-9]+$")) {
@@ -115,14 +118,17 @@ public class AddBooksController {
 				return "details";
 			} else {
 				model.addAttribute("errorText", "出版日は半角数字のYYYYMMDD形式で入力してください");
+				model.addAttribute("bookInfo", bookInfo);
 				return "addBook";
 			}
 		} else if (publishDate.matches("^[0-9]{8}+$")) {
 			model.addAttribute("errorText", "ISBNの桁数または半角数字が正しくありません");
+			model.addAttribute("bookInfo", bookInfo);
 			return "addBook";
 
 		} else {
 			model.addAttribute("errorText", "ISBNの桁数または半角数字が正しくありません<br>出版日は半角数字のYYYYMMDD形式で入力してください");
+			model.addAttribute("bookInfo", bookInfo);
 			return "addBook";
 		}
 	}
