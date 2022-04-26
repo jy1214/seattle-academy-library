@@ -87,7 +87,7 @@ public class AddBooksController {
 		}
 
 		if (title.length() == 0 || author.length() == 0 || publisher.length() == 0) {
-			if (ISBN.length() == 0 || ISBN.length() == 10 || ISBN.length() == 13 && ISBN.matches("^[0-9]+$")) {
+			if (ISBN.length() == 0 || ISBN.length() == 10 && ISBN.matches("^[0-9]+$") || ISBN.length() == 13 && ISBN.matches("^[0-9]+$")) {
 				if (publishDate.matches("^[0-9]{8}+$")) {
 					model.addAttribute("errorText", "必須項目を入力してください");
 					model.addAttribute("bookInfo", bookInfo);
@@ -106,7 +106,7 @@ public class AddBooksController {
 				model.addAttribute("bookInfo", bookInfo);
 				return "addBook";
 			}
-		} else if (ISBN.length() == 0 || ISBN.length() == 10 || ISBN.length() == 13 && ISBN.matches("^[0-9]+$")) {
+		} else if (ISBN.length() == 0 || ISBN.length() == 10 && ISBN.matches("^[0-9]+$") || ISBN.length() == 13 && ISBN.matches("^[0-9]+$")) {
 			if (publishDate.matches("^[0-9]{8}+$")) {
 				// 書籍情報を新規登録する
 				booksService.registBook(bookInfo);

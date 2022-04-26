@@ -81,10 +81,9 @@ public class BooksService {
 	}
 
 	/**
-	 * １番新しい本の書籍情報を取得する
+	 * 登録した本の書籍IDを取得する
 	 *
-	 * @param bookId 書籍ID
-	 * @return 書籍情報
+	 * @return bookId
 	 */
 	public int newBook() {
 
