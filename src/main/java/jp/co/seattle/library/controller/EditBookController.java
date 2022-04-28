@@ -116,8 +116,8 @@ public class EditBookController {
 			if (publishDate.matches("^[0-9]{8}+$")) {
 				// 書籍情報を更新する
 				booksService.upBook(bookInfo);
-				// TODO 登録した書籍の詳細情報を表示するように実装
-				// 詳細画面に遷移するR
+				// 登録した書籍の詳細情報を表示するように実装
+				// 詳細画面に遷移する
 				bookInfo.setBookId(bookInfo.getBookId());
 				model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookInfo.getBookId()));
 				return "details";

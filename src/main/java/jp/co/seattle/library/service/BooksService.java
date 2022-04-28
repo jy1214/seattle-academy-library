@@ -94,4 +94,19 @@ public class BooksService {
 
 		return bookId;
 	}
+	
+	/**
+	 * 書籍データを更新する
+	 *
+	 * @param bookInfo 書籍情報
+	 */
+	public void upBook(BookDetailsInfo bookInfo) {
+
+		String sql = "update books set(title, author,publisher,publish_date,ISBN,introduce,thumbnail_name,thumbnail_url,upd_date) = ('"
+				+ bookInfo.getTitle() + "','" + bookInfo.getAuthor() + "','" + bookInfo.getPublisher() + "','"
+				+ bookInfo.getPublishDate() + "','" + bookInfo.getISBN() + "','" + bookInfo.getIntroduce() + "','"
+				+ bookInfo.getThumbnailName() + "','" + bookInfo.getThumbnailUrl() + "'," + "now())where id = " + bookInfo.getBookId();
+
+		jdbcTemplate.update(sql);
+	}
 }
