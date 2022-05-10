@@ -25,7 +25,7 @@ public class ReturnBooksController {
 	public String returnBook(@RequestParam("bookId") int bookId, Model model) {
 
 		if (rentalsService.getRentBook(bookId) == 0) {
-			model.addAttribute("errorRent", "貸し出しされていません");
+			model.addAttribute("errorRent", "貸し出しされていません。");
 			model.addAttribute("rentStatus", "貸し出し可");
 		} else {
 			rentalsService.returnBook(bookId);
