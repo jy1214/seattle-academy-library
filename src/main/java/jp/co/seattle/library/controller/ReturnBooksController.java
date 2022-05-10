@@ -26,10 +26,8 @@ public class ReturnBooksController {
 
 		if (rentalsService.getRentBook(bookId) == 0) {
 			model.addAttribute("errorRent", "貸し出しされていません。");
-			model.addAttribute("rentStatus", "貸し出し可");
 		} else {
 			rentalsService.returnBook(bookId);
-			model.addAttribute("rentStatus", "貸し出し可");
 		}
 		model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
 		return "details";
