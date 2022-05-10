@@ -43,8 +43,8 @@
                     </a>
                 </div>
                 <c:if test="${!empty errorRent}">
-                        <p class="error">${errorRent}</p>
-                    </c:if>
+                    <p class="error">${errorRent}</p>
+                </c:if>
             </div>
             <div class="content_right">
                 <div>
