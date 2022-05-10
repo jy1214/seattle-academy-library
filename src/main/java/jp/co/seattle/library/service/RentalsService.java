@@ -38,4 +38,14 @@ public class RentalsService {
 			return 0;
 		}
 	}
+	
+	/**
+	 * 書籍IDをrentalbooksテーブルから削除
+	 * 
+	 * @param bookId 書籍ID
+	 */
+	public void returnBook(int bookId) {
+		String sql = "DELETE FROM rentalbooks where book_id = ? ";
+		jdbcTemplate.update(sql,bookId);
+	}
 }
