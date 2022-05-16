@@ -48,7 +48,8 @@ public class BooksService {
 	public BookDetailsInfo getBookInfo(int bookId) {
 
 		// JSPに渡すデータを設定する
-		String sql = "SELECT * FROM books where id =" + bookId;
+		String sql = "select title, author,publisher,publish_date,ISBN,introduce,thumbnail_name,thumbnail_url,reg_date,upd_date,book_id, case when book_id > 0  then '貸し出し中' else '貸し出し可' end as status from books LEFT OUTER JOIN rentalbooks on books.id = rentalbooks.book_id where books.id ="
+				+ bookId;
 
 		BookDetailsInfo bookDetailsInfo = jdbcTemplate.queryForObject(sql, new BookDetailsInfoRowMapper());
 
@@ -94,7 +95,7 @@ public class BooksService {
 
 		return bookId;
 	}
-	
+
 	/**
 	 * 書籍データを更新する
 	 *
@@ -105,7 +106,8 @@ public class BooksService {
 		String sql = "update books set(title, author,publisher,publish_date,ISBN,introduce,thumbnail_name,thumbnail_url,upd_date) = ('"
 				+ bookInfo.getTitle() + "','" + bookInfo.getAuthor() + "','" + bookInfo.getPublisher() + "','"
 				+ bookInfo.getPublishDate() + "','" + bookInfo.getISBN() + "','" + bookInfo.getIntroduce() + "','"
-				+ bookInfo.getThumbnailName() + "','" + bookInfo.getThumbnailUrl() + "'," + "now())where id = " + bookInfo.getBookId();
+				+ bookInfo.getThumbnailName() + "','" + bookInfo.getThumbnailUrl() + "'," + "now())where id = "
+				+ bookInfo.getBookId();
 
 		jdbcTemplate.update(sql);
 	}
