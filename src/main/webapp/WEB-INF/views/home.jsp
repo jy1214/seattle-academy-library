@@ -28,11 +28,10 @@
         <h1>Home</h1>
         <div class="top">
             <form action="searchBook" method="post">
-                <div style=float:right>
+                <div style="float: right">
                     <input type="search" class="search1" name="search" placeholder="キーワードを入力">
-                    <button type="submit" class="btn_searchBook">検索</button><br>
-                    <input type="radio" name="radiobutton" value=1 checked="checked">を含む
-                    <input type="radio" name="radiobutton" value=0>に一致する
+                    <button type="submit" class="btn_searchBook">検索</button>
+                    <br> <input type="radio" name="radiobutton" value=1 checked="checked">を含む <input type="radio" name="radiobutton" value=0>に一致する
                 </div>
             </form>
             <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a> <a href="<%=request.getContextPath()%>/bulkBook" class="btn_bulk_book">一括登録</a>

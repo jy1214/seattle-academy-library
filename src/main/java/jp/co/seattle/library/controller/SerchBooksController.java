@@ -46,7 +46,7 @@ public class SerchBooksController {
 				model.addAttribute("bookList", booksService.searchBookList(searchBook));
 			}
 		}
-			model.addAttribute("resultMessage", "「を含む」もしくは「に一致する」にチェックを入れてください。");
+		model.addAttribute("resultMessage", "「を含む」もしくは「に一致する」にチェックを入れてください。");
 		return "home";
 	}
 
