@@ -77,10 +77,8 @@ public class BooksService {
 	 * @param bookId 書籍ID
 	 */
 	public void deleteBook(int bookId) {
-		String sql = "DELETE from books where id =" + bookId;
-		String rentalsql = "DELETE from rentalbooks where book_id =" + bookId;
+		String sql = "WITH t AS (DELETE FROM books WHERE id = " + bookId + ") DELETE FROM rentalbooks WHERE book_id = " + bookId;
 		jdbcTemplate.update(sql);
-		jdbcTemplate.update(rentalsql);
 	}
 
 	/**
