@@ -35,6 +35,9 @@
                 </div>
             </form>
             <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a> <a href="<%=request.getContextPath()%>/bulkBook" class="btn_bulk_book">一括登録</a>
+            <form action="rentHistory" method="post" style="display: inline">
+                <button type="submit" class="btn_rent_history">貸し出し履歴</button>
+            </form>
         </div>
         <div class="content_body">
             <c:if test="${!empty resultMessage}">
@@ -44,7 +47,7 @@
                 <div class="booklist">
                     <c:forEach var="bookInfo" items="${bookList}">
                         <div class="books">
-                            <form method="post" class="book_thumnail" action="<%=request.getContextPath()%>/details">
+                            <form class="book_thumnail" action="<%=request.getContextPath()%>/details">
                                 <a href="javascript:void(0)" onclick="this.parentNode.submit();"> <c:if test="${bookInfo.thumbnail == 'null'}">
                                         <img class="book_noimg" src="resources/img/noImg.png">
                                     </c:if> <c:if test="${bookInfo.thumbnail != 'null'}">
