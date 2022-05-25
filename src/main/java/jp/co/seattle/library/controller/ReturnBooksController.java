@@ -24,7 +24,7 @@ public class ReturnBooksController {
 	@RequestMapping(value = "/returnBook", method = RequestMethod.POST)
 	public String returnBook(@RequestParam("bookId") int bookId, Model model) {
 
-		if (rentalsService.getRentBook(bookId) == 0) {
+		if (rentalsService.getRentBook(bookId) == null || rentalsService.getRentDate(bookId) == null) {
 			model.addAttribute("errorRent", "貸し出しされていません。");
 		} else {
 			rentalsService.returnBook(bookId);

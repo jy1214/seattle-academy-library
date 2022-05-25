@@ -41,7 +41,7 @@ public class DeleteBookController {
 	public String deleteBook(Locale locale, @RequestParam("bookId") Integer bookId, Model model) {
 		logger.info("Welcome delete! The client locale is {}.", locale);
 
-		if (rentalsService.getRentBook(bookId) == 0) {
+		if (rentalsService.getRentDate(bookId) == null) {
 			booksService.deleteBook(bookId);
 		} else {
 			model.addAttribute("errorRent", "貸し出し中は削除できません。");

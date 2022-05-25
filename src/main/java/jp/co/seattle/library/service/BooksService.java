@@ -48,7 +48,7 @@ public class BooksService {
 	public BookDetailsInfo getBookInfo(int bookId) {
 
 		// JSPに渡すデータを設定する
-		String sql = "select books.id, title, author, publisher, publish_date, ISBN, introduce, thumbnail_name, thumbnail_url, reg_date, upd_date, rentalbooks.book_id, case when rentalbooks.book_id > 0  then '貸し出し中' else '貸し出し可' end as status from books LEFT OUTER JOIN rentalbooks on books.id = rentalbooks.book_id where books.id ="
+		String sql = "select books.id, title, author, publisher, publish_date, ISBN, introduce, thumbnail_name, thumbnail_url, reg_date, upd_date, rentalbooks.book_id, rent_date, return_date, case when rentalbooks.rent_date is not null then '貸し出し中' else '貸し出し可' end as status from books LEFT OUTER JOIN rentalbooks on books.id = rentalbooks.book_id where books.id ="
 				+ bookId;
 
 		BookDetailsInfo bookDetailsInfo = jdbcTemplate.queryForObject(sql, new BookDetailsInfoRowMapper());
@@ -77,7 +77,7 @@ public class BooksService {
 	 * @param bookId 書籍ID
 	 */
 	public void deleteBook(int bookId) {
-		String sql = "DELETE from books where id =" + bookId;
+		String sql = "WITH t AS (DELETE FROM books WHERE id = " + bookId + ") DELETE FROM rentalbooks WHERE book_id = " + bookId;
 		jdbcTemplate.update(sql);
 	}
 
